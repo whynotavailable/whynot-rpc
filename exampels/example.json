@@ -1,0 +1,24 @@
+{
+  "services": {
+    "Movies": {
+      "defaultSecurity": "none"
+    }
+  },
+  "functions": {
+    "getMovies": {
+      "returns": {
+        "type": "list",
+        "kind": "Movie"
+      }
+    }
+  },
+  "types": {
+    "Movie": {
+      "Properties": {
+        "name": "string",
+        "yearReleased": "int"
+      }
+    }
+  },
+  "securityContexts": {}
+}

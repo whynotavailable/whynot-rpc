@@ -1,0 +1,13 @@
+service: Example
+
+requests:
+  getMovies:
+    returns:
+      type: list
+      kind: Movie
+
+types:
+  Movie:
+    props:
+      name: string
+      yearReleased: int
