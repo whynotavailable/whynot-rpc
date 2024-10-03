@@ -1,8 +1,0 @@
-def getMovies() Movie[] {
-  security = "bearer"
-}
-
-type Movie {
-  name string
-  yearReleased int
-}
