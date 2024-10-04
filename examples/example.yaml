@@ -2,9 +2,7 @@ service: Example
 
 requests:
   getMovies:
-    returns:
-      type: list
-      kind: Movie
+    returns: "[]Movie"
 
 types:
   Movie:

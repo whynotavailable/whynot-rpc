@@ -1,0 +1,62 @@
+service: Movies
+
+# This means that each request MUST implement one of these.
+requiredSecurity:
+  - bearer
+  - fga
+
+security:
+  fga:
+    bearer: true
+    context: fga # each method that implements this security must fill the context contract
+
+requests:
+  getMovies:
+    simple: true # changes to a get with query params instead of a POST
+    params:
+      filter: ?string
+      page: ?uint
+    returns: "[]movie"
+    security: bearer
+  getMovie:
+    simple: true # changes to a get with query params instead of a POST
+    params:
+      id: string
+    returns: "movie"
+    security: bearer
+  createMovie:
+    params:
+      movie: movieCreate
+    returns: movie
+    security: bearer
+  updateMovie:
+    params:
+      movie: movie
+    security: fga
+    securityContext:
+      relation: manage
+      object: movie
+      $id: movie.id # The $ means it'll compute the value from the input params
+  deleteMovie:
+    params:
+      id: string
+    security: fga
+    securityContext:
+      relation: manage
+      object: movie
+      $id: id
+
+types:
+  movieCreate:
+    props:
+      name: string
+      yearReleased: int
+  movie:
+    parent: movieCreate
+    props:
+      id: string
+  fga:
+    props:
+      relation: string
+      object: string
+      id: string
